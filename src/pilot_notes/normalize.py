@@ -1,3 +1,3 @@
 def normalize(value: str) -> str:
-    """Return normalized note text (implementation pending)."""
-    return value
+    """Collapse Unicode whitespace into single ASCII spaces."""
+    return " ".join(value.split())
