@@ -1,0 +1,45 @@
+schema_version: '0.1'
+id: FEATURE-NOTES
+application_id: APP-NOTES
+title: Normalize notes
+description: Normalize note whitespace through the existing CLI.
+state: DRAFT
+risk:
+  level: medium
+  summary: Risk must be reviewed before approval.
+requirements:
+- 'Implement normalize(value: str) using Unicode whitespace splitting and ASCII-space
+  joining.'
+- Preserve case, punctuation and non-whitespace Unicode characters; empty input returns
+  empty.
+- Existing CLI prints normalized text followed by exactly one newline.
+acceptance_criteria:
+- Protected normalization cases pass.
+workstream_refs:
+- workstreams/WORKSTREAM-NORMALIZE.yaml
+worker_requirements:
+- role: engineer
+  capabilities:
+  - repository_editing
+permissions:
+  filesystem:
+    repo_read: true
+    worktree_write: true
+    host_write: false
+  git:
+    local_commit: true
+    remote_push: false
+    merge: false
+    force_push: false
+  infrastructure:
+    docker_local: false
+    external_network: denied
+    staging: false
+    production: false
+validation_gates: []
+human_checkpoints: []
+budget:
+  currency: GBP
+  limit: 0
+  approval_required_above: 0
+evidence_refs: []

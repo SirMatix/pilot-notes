@@ -1,0 +1,23 @@
+schema_version: '0.1'
+id: APP-NOTES
+name: pilot-notes
+repository:
+  url: .
+  default_branch: main
+default_permissions:
+  filesystem:
+    repo_read: true
+    worktree_write: true
+    host_write: false
+  git:
+    local_commit: true
+    remote_push: false
+    merge: false
+    force_push: false
+  infrastructure:
+    docker_local: false
+    external_network: denied
+    staging: false
+    production: false
+feature_refs:
+- features/FEATURE-NOTES/feature.yaml

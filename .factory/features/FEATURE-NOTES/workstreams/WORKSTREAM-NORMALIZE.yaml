@@ -1,0 +1,112 @@
+schema_version: '0.1'
+id: WORKSTREAM-NORMALIZE
+feature_id: FEATURE-NOTES
+title: Normalize whitespace
+description: Implement one deterministic normalization behavior.
+state: DRAFT
+risk:
+  level: low
+  summary: Two local Python files; no external runtime service.
+requirements:
+- 'Implement normalize(value: str) using Unicode whitespace splitting and ASCII-space
+  joining.'
+- Preserve case, punctuation and non-whitespace Unicode characters; empty input returns
+  empty.
+- Existing CLI prints normalized text followed by exactly one newline.
+- Modify only src/pilot_notes/normalize.py and tests/test_normalize.py; at most two
+  files and 80 added lines.
+- Add deterministic unit coverage for empty, whitespace-only, mixed whitespace and
+  Unicode input.
+acceptance_criteria:
+- id: AC-001
+  description: Protected cases and CLI output pass; normalization is idempotent.
+worker_requirements:
+- role: engineer
+  capabilities:
+  - repository_editing
+- role: reviewer
+  capabilities:
+  - independent_code_review
+permissions:
+  filesystem:
+    repo_read: true
+    worktree_write: true
+    host_write: false
+  git:
+    local_commit: false
+    remote_push: false
+    merge: false
+    force_push: false
+  infrastructure:
+    docker_local: false
+    external_network: denied
+    staging: false
+    production: false
+validation_gates:
+- id: unit_tests
+  command:
+  - python3
+  - -B
+  - -m
+  - unittest
+  - discover
+  - -s
+  - tests
+  - -p
+  - test_*.py
+  working_directory: .
+  required: true
+human_checkpoints: []
+budget:
+  currency: GBP
+  limit: 0
+  approval_required_above: 0
+evidence_refs: []
+task_contract:
+  non_goals:
+  - Storage, authentication, APIs, dependencies, new commands, packaging or CI changes.
+  - Git operations, metadata changes, deployment or host writes.
+  invariants:
+  - id: INV-001
+    description: Pure deterministic function; no I/O or dependencies.
+  allowed_paths:
+  - src/pilot_notes/normalize.py
+  - tests/test_normalize.py
+  protected_paths:
+  - .factory/**
+  - .git/**
+  - .github/**
+  - tests/acceptance/**
+  - pyproject.toml
+  - README.md
+  - src/pilot_notes/cli.py
+  - src/pilot_notes/__init__.py
+  - .gitignore
+  change_budget:
+    new_production_dependencies: 0
+    new_services: 0
+    new_public_interfaces: 0
+    new_configuration_keys: 0
+    new_database_tables: 0
+    new_database_columns: 0
+    new_queues: 0
+    new_caches: 0
+  documentation_impact:
+    public_contract: false
+    architecture: false
+    invariants: false
+    configuration: false
+    operations: false
+    security: false
+  protected_acceptance:
+    evaluator_root: tests/acceptance
+    cases:
+    - acceptance_id: AC-001
+      evaluator: tests/acceptance/test_contract.py
+execution_profile:
+  runtime:
+    family: python
+    executable: python3
+    version:
+      major: 3
+      minor: 14
