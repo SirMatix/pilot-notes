@@ -1,0 +1,14 @@
+application_id: APP-NOTES
+approval_digest: dec511de54b9c1fa504197852b37d6b73398a41efbab4f5e1b8c16a9dee5e552
+approval_id: APPROVAL-002
+approval_kind: approve
+approval_version: initial-approval-v1
+feature_id: FEATURE-NOTES
+from_state: WAITING_FOR_APPROVAL
+planning_authority_sha256: 98c94b936b4727f28705827a4d8772e5b57f1e97678aee8d6a2fb8c166467362
+previous_approval_digest: a7ea4f10d2f9495984bf6eaba1e074f8e3107137c84eecf3caa773cc7cee164b
+previous_approval_id: APPROVAL-001
+submitted_approval_digest: a7ea4f10d2f9495984bf6eaba1e074f8e3107137c84eecf3caa773cc7cee164b
+submitted_approval_id: APPROVAL-001
+to_state: APPROVED
+workstream_id: WORKSTREAM-NORMALIZE

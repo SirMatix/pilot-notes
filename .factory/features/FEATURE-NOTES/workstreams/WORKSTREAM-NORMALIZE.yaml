@@ -3,7 +3,7 @@ id: WORKSTREAM-NORMALIZE
 feature_id: FEATURE-NOTES
 title: Normalize whitespace
 description: Implement one deterministic normalization behavior.
-state: DRAFT
+state: APPROVED
 risk:
   level: low
   summary: Two local Python files; no external runtime service.
@@ -110,3 +110,7 @@ execution_profile:
     version:
       major: 3
       minor: 14
+state_evidence:
+  approval_id: APPROVAL-002
+  approval_digest: dec511de54b9c1fa504197852b37d6b73398a41efbab4f5e1b8c16a9dee5e552
+  approval_stage: approved
